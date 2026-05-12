@@ -203,7 +203,7 @@ function StatusEJ() {
 
 // Projetos por faturamento
 function ProjetosFaturamento() {
-  const maxValor = Math.max(...projetos.map(p => p.valor));
+  const maxValor = Math.max(...projetos.map(p => p.recebido || p.valor));
   return (
     <div className="rounded-xl border border-white/8 bg-card p-5">
       <div className="flex items-center gap-2 mb-4">
@@ -220,20 +220,19 @@ function ProjetosFaturamento() {
                 <span className="text-xs text-muted-foreground w-4">{i + 1}.</span>
                 <span className="text-sm font-medium text-foreground">{proj.nome}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${proj.status === 'Concluído' ? 'status-green' : 'status-yellow'}`}>
-                  {proj.status}
-                </span>
-                <span className="text-sm font-bold text-foreground" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                  R$ {proj.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                </span>
-              </div>
+              <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${proj.status === 'Concluído' ? 'status-green' : 'status-yellow'}`}>
+                {proj.status}
+              </span>
+            </div>
+            <div className="flex items-center justify-between text-xs mb-1">
+              <span className="text-muted-foreground">Recebido: R$ {(proj.recebido || proj.valor).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+              {proj.atraso > 0 && <span className="text-red-400 font-medium">Atraso: R$ {proj.atraso.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>}
             </div>
             <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
               <div
                 className="h-full rounded-full transition-all duration-700"
                 style={{
-                  width: `${(proj.valor / maxValor) * 100}%`,
+                  width: `${((proj.recebido || proj.valor) / maxValor) * 100}%`,
                   background: i === 0 ? 'linear-gradient(90deg, #3B82F6, #60A5FA)' : i === 1 ? 'linear-gradient(90deg, #10B981, #34D399)' : i === 2 ? 'linear-gradient(90deg, #8B5CF6, #A78BFA)' : i === 3 ? 'linear-gradient(90deg, #F59E0B, #FCD34D)' : 'linear-gradient(90deg, #6B7280, #9CA3AF)',
                 }}
               />
