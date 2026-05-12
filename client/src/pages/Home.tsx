@@ -113,26 +113,11 @@ function Sidebar() {
       {/* Nav */}
       <nav className="flex-1 p-4 space-y-1">
         <p className="text-[10px] font-semibold text-purple-400 uppercase tracking-widest px-3 mb-3">Menu</p>
-        {[
-          { icon: BarChart2, label: 'Dashboard', active: true }
-          /*{ icon: DollarSign, label: 'Financeiro', active: false },
-          { icon: Briefcase, label: 'Projetos', active: false },
-          { icon: Users, label: 'Membros', active: false },
-          { icon: FileText, label: 'Documentos', active: false },*/
-        ].map(({ icon: Icon, label, active }) => (
-          <button
-            key={label}
-            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
-              active
-                ? 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 font-medium border border-purple-400/30'
-                : 'text-gray-400 hover:text-purple-300 hover:bg-purple-500/10'
-            }`}
-          >
-            <Icon size={16} />
-            {label}
-            {active && <ChevronRight size={12} className="ml-auto" />}
-          </button>
-        ))}
+        <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 font-medium border border-purple-400/30">
+          <BarChart2 size={16} />
+          Dashboard
+          <ChevronRight size={12} className="ml-auto" />
+        </button>
       </nav>
 
       {/* Footer */}
