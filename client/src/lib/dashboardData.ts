@@ -9,20 +9,18 @@ export const saidasPorMes = [314.00, 715.25, 1163.55, 500.42, 441.05, 1997.87, 8
 
 export const caixaAcumulado = [600.06, 1160.90, 1677.35, 1216.94, 979.90, 962.03, 1094.48, 1918.50, 1986.93, 2207.96, 1693.86, 2627.88];
 
-// Corrigido: Germinar tem apenas 1.800 recebido (não 1.600), mantém faturamento em 11.005,19
 export const totalEntradas = 11005.19;
 export const totalSaidas = 9191.37;
-export const saldoFinal = 2627.88; // Saldo original mantido
+export const saldoFinal = 2627.88;
 export const caixaInicial = 814.06;
-export const atrasoTotal = 1800.00; // Germinar segunda parcela em atraso
 
 // Projetos com maior faturamento
 export const projetos = [
-  { nome: 'IntegAtiva', valor: 6930.00, status: 'Concluído', cliente: 'Heliane', recebido: 6930.00, atraso: 0 },
-  { nome: 'Germinar', valor: 3600.00, status: 'Em andamento', cliente: 'Germinar', recebido: 1800.00, atraso: 1800.00 },
-  { nome: 'Trupe dos Tuões', valor: 1200.00, status: 'Concluído', cliente: 'Estrupicios Produções', recebido: 1200.00, atraso: 0 },
-  { nome: 'GeoPhotos', valor: 495.90, status: 'Concluído', cliente: 'GeoPhotos', recebido: 495.90, atraso: 0 },
-  { nome: 'Wattworks', valor: 55.00, status: 'Em andamento', cliente: 'SDM Soluções', recebido: 55.00, atraso: 0 },
+  { nome: 'IntegAtiva', valor: 6930.00, status: 'Concluído', cliente: 'Heliane' },
+  { nome: 'Germinar', valor: 1600.00, status: 'Concluído', cliente: 'Germinar' },
+  { nome: 'Trupe dos Tuões', valor: 1200.00, status: 'Concluído', cliente: 'Estrupicios Produções' },
+  { nome: 'GeoPhotos', valor: 495.90, status: 'Concluído', cliente: 'GeoPhotos' },
+  { nome: 'Wattworks', valor: 55.00, status: 'Em andamento', cliente: 'SDM Soluções' },
 ];
 
 // Distribuição de gastos por categoria
@@ -83,7 +81,7 @@ export const statusEJ = [
   { area: 'Administrativo', status: 'saudavel', descricao: 'Documentação regularizada', cor: 'green' },
 ];
 
-// Dados para gráfico de barras mensal (mantém dados originais)
+// Dados para gráfico de barras mensal
 export const dadosBarras = meses.map((mes, i) => ({
   mes,
   entradas: entradasPorMes[i],
@@ -91,7 +89,7 @@ export const dadosBarras = meses.map((mes, i) => ({
   saldo: entradasPorMes[i] - saidasPorMes[i],
 }));
 
-// Dados para gráfico de linha (evolução do caixa - dados originais)
+// Dados para gráfico de linha (evolução do caixa)
 export const dadosLinha = meses.map((mes, i) => ({
   mes,
   caixa: caixaAcumulado[i],
