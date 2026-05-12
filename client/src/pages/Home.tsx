@@ -114,11 +114,11 @@ function Sidebar() {
       <nav className="flex-1 p-4 space-y-1">
         <p className="text-[10px] font-semibold text-purple-400 uppercase tracking-widest px-3 mb-3">Menu</p>
         {[
-          { icon: BarChart2, label: 'Dashboard', active: true },
-          { icon: DollarSign, label: 'Financeiro', active: false },
+          { icon: BarChart2, label: 'Dashboard', active: true }
+          /*{ icon: DollarSign, label: 'Financeiro', active: false },
           { icon: Briefcase, label: 'Projetos', active: false },
           { icon: Users, label: 'Membros', active: false },
-          { icon: FileText, label: 'Documentos', active: false },
+          { icon: FileText, label: 'Documentos', active: false },*/
         ].map(({ icon: Icon, label, active }) => (
           <button
             key={label}
