@@ -9,12 +9,12 @@ export const saidasPorMes = [314.00, 715.25, 1163.55, 500.42, 441.05, 1997.87, 8
 
 export const caixaAcumulado = [600.06, 1160.90, 1677.35, 1216.94, 979.90, 962.03, 1094.48, 1918.50, 1986.93, 2207.96, 1693.86, 2627.88];
 
-// Corrigido: Germinar tem apenas 1.800 recebido (não 1.600)
-export const totalEntradas = 11005.19 - 1600 + 1800; // 11.205,19
+// Corrigido: Germinar tem apenas 1.800 recebido (não 1.600), mantém faturamento em 11.005,19
+export const totalEntradas = 11005.19;
 export const totalSaidas = 9191.37;
-export const saldoFinal = 2627.88 + 200; // 2.827,88
+export const saldoFinal = 2627.88; // Saldo original mantido
 export const caixaInicial = 814.06;
-export const atrasoTotal = 1800.00; // Germinar segunda parcela
+export const atrasoTotal = 1800.00; // Germinar segunda parcela em atraso
 
 // Projetos com maior faturamento
 export const projetos = [
@@ -83,28 +83,16 @@ export const statusEJ = [
   { area: 'Administrativo', status: 'saudavel', descricao: 'Documentação regularizada', cor: 'green' },
 ];
 
-// Dados para gráfico de barras mensal (corrigido com Germinar 1.800 em Mar)
-const entradasCorrigidas = [...entradasPorMes];
-entradasCorrigidas[2] = entradasCorrigidas[2] - 1600 + 1800; // Mar: -1600 (Germinar errado) +1800 (correto)
+// Dados para gráfico de barras mensal (mantém dados originais)
 export const dadosBarras = meses.map((mes, i) => ({
   mes,
-  entradas: entradasCorrigidas[i],
+  entradas: entradasPorMes[i],
   saidas: saidasPorMes[i],
-  saldo: entradasCorrigidas[i] - saidasPorMes[i],
+  saldo: entradasPorMes[i] - saidasPorMes[i],
 }));
 
-// Caixa acumulado corrigido
-const caixaAcumuladoCorrigido: number[] = [];
-let saldo = caixaInicial;
-for (let i = 0; i < 12; i++) {
-  saldo = saldo + entradasCorrigidas[i] - saidasPorMes[i];
-  caixaAcumuladoCorrigido.push(Math.round(saldo * 100) / 100);
-}
-export const dadosLinhaCorrigido = meses.map((mes, i) => ({
+// Dados para gráfico de linha (evolução do caixa - dados originais)
+export const dadosLinha = meses.map((mes, i) => ({
   mes,
-  caixa: caixaAcumuladoCorrigido[i],
+  caixa: caixaAcumulado[i],
 }));
-
-// Dados para gráfico de linha (evolução do caixa) - usar versão corrigida
-// Mantém compatibilidade com código existente
-export const dadosLinha = dadosLinhaCorrigido;
