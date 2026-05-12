@@ -1,7 +1,6 @@
 /*
- * KPICard — Dashboard ASCII 2025
- * Style: Corporate Tech Minimalism (Dark Mode)
- * Card elevado com hover animation e count-up effect
+ * KPICard — Dashboard ASCII 2025 (Simplified)
+ * Style: Minimalist — light bg, subtle border, clean typography
  */
 import { useEffect, useRef, useState } from 'react';
 import { LucideIcon } from 'lucide-react';
@@ -19,7 +18,7 @@ interface KPICardProps {
   isCurrency?: boolean;
 }
 
-function useCountUp(target: number, duration: number = 1200, delay: number = 0) {
+function useCountUp(target: number, duration: number = 1000, delay: number = 0) {
   const [count, setCount] = useState(0);
   const startedRef = useRef(false);
 
@@ -49,7 +48,7 @@ export function KPICard({
   prefixo = '',
   sufixo = '',
   icone: Icon,
-  corIcone = 'text-blue-400',
+  corIcone = 'text-blue-600',
   variacao,
   descricao,
   delay = 0,
@@ -57,7 +56,7 @@ export function KPICard({
 }: KPICardProps) {
   const numericValue = typeof valor === 'number' ? valor : parseFloat(String(valor).replace(/[^0-9.-]/g, ''));
   const isNumeric = !isNaN(numericValue);
-  const animatedValue = useCountUp(isNumeric ? numericValue : 0, 1200, delay);
+  const animatedValue = useCountUp(isNumeric ? numericValue : 0, 1000, delay);
 
   const formatValue = (v: number) => {
     if (isCurrency) {
@@ -70,32 +69,32 @@ export function KPICard({
 
   return (
     <div
-      className="kpi-card fade-in-up rounded-xl border border-white/8 bg-card p-5 flex flex-col gap-3"
+      className="kpi-card fade-in-up rounded-lg border border-gray-200 bg-white p-4 flex flex-col gap-2"
       style={{ animationDelay: `${delay}ms`, animationFillMode: 'both' }}
     >
       <div className="flex items-center justify-between">
-        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{titulo}</span>
-        <div className={`w-8 h-8 rounded-lg flex items-center justify-center bg-white/5 ${corIcone}`}>
+        <span className="text-xs font-semibold text-gray-600 uppercase tracking-wider">{titulo}</span>
+        <div className={`w-8 h-8 rounded-lg flex items-center justify-center bg-gray-100 ${corIcone}`}>
           <Icon size={16} />
         </div>
       </div>
 
       <div className="flex items-end gap-1">
-        {prefixo && <span className="text-sm text-muted-foreground mb-1">{prefixo}</span>}
-        <span className="text-2xl font-bold text-foreground font-[Space_Grotesk]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+        {prefixo && <span className="text-sm text-gray-600 mb-1">{prefixo}</span>}
+        <span className="text-2xl font-bold text-gray-900" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
           {displayValue}
         </span>
-        {sufixo && <span className="text-sm text-muted-foreground mb-1">{sufixo}</span>}
+        {sufixo && <span className="text-sm text-gray-600 mb-1">{sufixo}</span>}
       </div>
 
       {(variacao !== undefined || descricao) && (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 text-xs">
           {variacao !== undefined && (
-            <span className={`text-xs font-medium px-1.5 py-0.5 rounded ${variacao >= 0 ? 'text-emerald-400 bg-emerald-500/10' : 'text-red-400 bg-red-500/10'}`}>
+            <span className={`font-medium px-1.5 py-0.5 rounded ${variacao >= 0 ? 'text-emerald-700 bg-emerald-50' : 'text-red-700 bg-red-50'}`}>
               {variacao >= 0 ? '+' : ''}{variacao}%
             </span>
           )}
-          {descricao && <span className="text-xs text-muted-foreground">{descricao}</span>}
+          {descricao && <span className="text-gray-600">{descricao}</span>}
         </div>
       )}
     </div>
